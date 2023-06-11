@@ -57,6 +57,38 @@ public class AviaSoulsTest {
     }
 
     @Test
+    public void shouldFindOneTicket() {
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        manager.add(ticket7);
+
+        Ticket[] expected = { ticket3 };
+        Ticket[] actual = manager.search("Санкт-Петербург", "Хабаровск");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindNoTickets() {
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        manager.add(ticket7);
+
+        Ticket[] expected = { };
+        Ticket[] actual = manager.search("Владивосток", "Хабаровск");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void shouldSortUsingComparator() {
         manager.add(ticket1);
         manager.add(ticket2);
